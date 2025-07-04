@@ -67,7 +67,3 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 MIT License  
 See [LICENSE](./LICENSE) for full details.
 ```
-
----
-
-Paste this into your `README.md` and you're good to go. Want a badge-based layout or contribution guidelines added next?
