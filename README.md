@@ -1,4 +1,3 @@
-```markdown
 # MyCart 🛒  
 An e-commerce store built to learn and explore the MERN stack.
 
