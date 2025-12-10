@@ -1,4 +1,4 @@
-# MyCart 🛒  
+# PCart 🛒  
 An e-commerce store built to learn and explore the MERN stack.
 
 ## 🚀 Features
