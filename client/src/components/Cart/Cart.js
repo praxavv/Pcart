@@ -1,7 +1,7 @@
 // src\components\Cart.js
 
 import React, { useState } from 'react';
-import { useCart } from './CartContext';
+import { useCart } from '../../context/CartContext';
 import axios from 'axios';
 import './Cart.css'; // Assuming you have a CSS file for styling
 

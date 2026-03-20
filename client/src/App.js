@@ -2,11 +2,11 @@
 
 
 import React, { useState, useEffect } from 'react';
-import ProductList from './components/ProductList';
+import ProductList from './components/Products/ProductList';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Cart from './components/Cart';
-import Login from './components/Login';
+import Cart from './components/Cart/Cart';
+import Login from './components/Auth/Login';
 
 function App() {
  const numberOfStars = 200; // Adjust the number of stars
@@ -49,16 +49,40 @@ function App() {
  <Router>
  <div className="App">
  {stars}
- <nav className="main-nav">
- <Link to="/">Products</Link> |{' '}
- <Link to="/cart">Cart</Link> |{' '}
- {isAuthenticated ? (
-   <button onClick={handleLogout} style={{ background: 'none', border: 'none', color: '#39ff14', cursor: 'pointer' }}>Logout</button>
- ) : (
-   <Link to="/login">Login / Register</Link>
- )}
- </nav>
- <main>
+ <header className="amazon-header">
+   <div className="header-top">
+     <Link to="/" className="logo">PCART</Link>
+     <div className="search-bar">
+       <input type="text" placeholder="Search products..." />
+       <button className="search-btn">🔍</button>
+     </div>
+     <div className="header-nav-links">
+       {isAuthenticated ? (
+         <div className="nav-item">
+           <span className="nav-line-1">Hello, User</span>
+           <button onClick={handleLogout} className="logout-btn">Sign Out</button>
+         </div>
+       ) : (
+         <Link to="/login" className="nav-item">
+           <span className="nav-line-1">Hello, sign in</span>
+           <span className="nav-line-2">Account & Lists</span>
+         </Link>
+       )}
+       <Link to="/cart" className="nav-item cart-link">
+         <span className="cart-icon">🛒</span>
+         <span className="cart-text">Cart</span>
+       </Link>
+     </div>
+   </div>
+   <nav className="header-bottom">
+     <Link to="/">All</Link>
+     <Link to="/">Electronics</Link>
+     <Link to="/">Gaming</Link>
+     <Link to="/">Deals</Link>
+     <Link to="/">Customer Service</Link>
+   </nav>
+ </header>
+ <main className="content-area">
  <Routes>
  <Route path="/" element={<ProductList />} />
  <Route path="/cart" element={<Cart />} />
@@ -68,7 +92,8 @@ function App() {
  </div>
  </Router>
  );
-}
+ }
+
 
 
 

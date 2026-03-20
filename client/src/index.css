@@ -1,15 +1,21 @@
+:root {
+  --primary-color: #39ff14;
+  --secondary-color: #0a0a0a;
+  --bg-color: #0d0d0d;
+  --card-bg: #1a1a1a;
+  --text-color: #ffffff;
+  --neon-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
+  --border-color: rgba(57, 255, 20, 0.3);
+}
+
 /* Reset & Base Styles */
 html, body {
   height: 100%;
-  overflow: hidden;
   margin: 0;
   padding: 0;
-  background: #0a0a0a;
-  color: #39ff14;
-  font-family: 'Orbitron', 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  text-shadow: 0 0 8px #39ff14, 0 0 2px #fff;
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
@@ -17,6 +23,13 @@ html, body {
 
 *, *::before, *::after {
   box-sizing: inherit;
+}
+
+h1, h2, h3, .logo {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 /* Monospace Code Blocks */
