@@ -4,6 +4,8 @@ import { useCart } from '../../context/CartContext';
 import rubikImg from '../../assets/rubik.jpg';
 import './ProductCard.css'; // Assuming you have a CSS file for styling
 
+const API_URL = process.env.REACT_APP_API_URL || "http://10.220.130.34:5000";
+
 const fallbackProducts = [
   {
     _id: 1,
@@ -35,7 +37,7 @@ const fallbackProducts = [
 const resolveImageUrl = (url) => {
     if (!url || typeof url !== 'string') return rubikImg;
     if (url.startsWith('http') || url.startsWith('data:')) return url;
-    if (url.startsWith('/assets/')) return 'http://localhost:5000' + url;
+    if (url.startsWith('/assets/')) return API_URL + url;
     // if it's a module import (it won't start with / or http in most cases if handled by bundler)
     return url;
 };
@@ -48,7 +50,7 @@ const ProductList = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('/api/products');
+                const response = await axios.get(`${API_URL}/api/products`);
                 setProducts(response.data);
                 setLoading(false);
             } catch (err) {
