@@ -27,13 +27,7 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(57, 255, 20, 0.05) 0%, transparent 70%);
-  animation: glow-pulse 8s infinite alternate;
-}
-
-@keyframes glow-pulse {
-  from { transform: scale(1); opacity: 0.5; }
-  to { transform: scale(1.50); opacity: 0.8; }
+  background: transparent;
 }
 
 /* Star effect container */
@@ -54,7 +48,7 @@
 }
 
 .hero-content p {
-  font-size: 1.5rem;
+  font-size:1rem;
   color: #ccc;
   margin-bottom: 2.5rem;
   z-index: 1;
@@ -233,7 +227,7 @@
   }
 
   .hero-content h1 {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
   }
 }
 

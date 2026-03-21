@@ -4,7 +4,7 @@ import { useCart } from '../../context/CartContext';
 import rubikImg from '../../assets/rubik.jpg';
 import './ProductCard.css'; // Assuming you have a CSS file for styling
 
-const API_URL = process.env.REACT_APP_API_URL || "http://10.220.130.34:5000";
+const API_URL = process.env.REACT_APP_API_URL || "";
 
 const fallbackProducts = [
   {
@@ -34,12 +34,22 @@ const fallbackProducts = [
 ];
 
 // Helper to resolve image path
-const resolveImageUrl = (url) => {
-    if (!url || typeof url !== 'string') return rubikImg;
-    if (url.startsWith('http') || url.startsWith('data:')) return url;
-    if (url.startsWith('/assets/')) return API_URL + url;
-    // if it's a module import (it won't start with / or http in most cases if handled by bundler)
-    return url;
+const getImageUrl = (url) => {
+    if (!url) return rubikImg;
+    
+    // Handle imported modules (objects with a 'default' property or direct strings)
+    const path = typeof url === 'object' ? (url.default || url) : url;
+    
+    if (typeof path !== 'string') return rubikImg;
+    
+    // If it's a full URL or data URI, return as is
+    if (path.startsWith('http') || path.startsWith('data:')) return path;
+    
+    // If it's a relative path from the public folder (starting with /assets or /static)
+    if (path.startsWith('/assets/') || path.startsWith('/static/')) return path;
+    
+    // Fallback for relative paths that might be resolved by the bundler
+    return path;
 };
 
 const ProductList = () => {
@@ -51,7 +61,12 @@ const ProductList = () => {
         const fetchProducts = async () => {
             try {
                 const response = await axios.get(`${API_URL}/api/products`);
-                setProducts(response.data);
+                // If API returns an empty array, use fallbacks
+                if (response.data && response.data.length > 0) {
+                    setProducts(response.data);
+                } else {
+                    setProducts(fallbackProducts);
+                }
                 setLoading(false);
             } catch (err) {
                 setProducts(fallbackProducts);
@@ -85,8 +100,8 @@ const ProductList = () => {
                     ))}
                 </div>
                 <div className="hero-content">
-                    <h1>Future of Shopping is Here</h1>
-                    <p>Experience the ultimate cyberpunk storefront. Fast, secure, and neon.</p>
+                    <h1> Pranav's Cart <br /> The future of shopping </h1>
+                    <p>Experience the ultimate storefront <br /> Fast and Secure</p>
                     <button className="hero-cta" onClick={() => window.scrollTo({ top: window.innerHeight - 80, behavior: 'smooth' })}>
                         Explore Collection
                     </button>
@@ -99,7 +114,7 @@ const ProductList = () => {
                         <div className="product-image-wrapper">
                             {product.imageUrl && (
                                 <img
-                                    src={resolveImageUrl(product.imageUrl)}
+                                    src={getImageUrl(product.imageUrl)}
                                     alt={product.name}
                                     className="product-image"
                                 />

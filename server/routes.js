@@ -63,11 +63,18 @@ router.get('/products', async (req, res) => {
     try {
         let products = await Product.find({});
         products = products.map(product => {
-            let url = product.imageUrl;
-            if (!url || typeof url !== 'string' || (!url.startsWith('/assets/') && !url.startsWith('http'))) {
+            let p = product.toObject();
+            let url = p.imageUrl;
+            
+            // Robust check for imageUrl
+            if (!url || typeof url !== 'string' || (!url.toLowerCase().startsWith('/assets/') && !url.toLowerCase().startsWith('http'))) {
+                url = '/assets/rubik.jpg';
+            } else if (url.toLowerCase().startsWith('/assets/rubik.jpg')) {
+                // Ensure correct case for rubik cube if it was messed up
                 url = '/assets/rubik.jpg';
             }
-            return { ...product.toObject(), imageUrl: url };
+            
+            return { ...p, imageUrl: url };
         });
         res.json(products);
     } catch (error) {
