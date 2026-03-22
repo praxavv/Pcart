@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useCart } from '../../context/CartContext';
+import { API_BASE_URL } from '../../config';
 import rubikImg from '../../assets/rubik.jpg';
 import './ProductCard.css'; // Assuming you have a CSS file for styling
-
-const API_URL = process.env.REACT_APP_API_URL || "";
 
 const fallbackProducts = [
   {
@@ -60,7 +59,7 @@ const ProductList = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get(`${API_URL}/api/products`);
+                const response = await axios.get(`${API_BASE_URL}/api/products`);
                 // If API returns an empty array, use fallbacks
                 if (response.data && response.data.length > 0) {
                     setProducts(response.data);

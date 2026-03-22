@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useCart } from '../../context/CartContext';
 import axios from 'axios';
+import { API_BASE_URL } from '../../config';
 import './Cart.css'; // Assuming you have a CSS file for styling
 
 const Cart = () => {
@@ -40,7 +41,7 @@ const Cart = () => {
         totalAmount: total, // 'total' is now correctly in scope
       };
 
-      await axios.post('/api/orders', order, {
+      await axios.post(`${API_BASE_URL}/api/orders`, order, {
         headers: {
           Authorization: `Bearer ${token}`
         }

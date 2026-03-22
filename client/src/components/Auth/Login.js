@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../../config';
 import './Auth.css'; // Assuming you have a CSS file for styling
 
 const Login = ({ onLogin }) => {
@@ -29,13 +30,13 @@ const Login = ({ onLogin }) => {
 
     try {
       if (isLogin) {
-        const res = await axios.post('/api/users/login', { email, password });
+        const res = await axios.post(`${API_BASE_URL}/api/users/login`, { email, password });
         localStorage.setItem('token', res.data.token);
         localStorage.removeItem('authMode'); // Clear the auth mode after successful login
         onLogin && onLogin();
         navigate('/');
       } else {
-        await axios.post('/api/users/register', { username, email, password });
+        await axios.post(`${API_BASE_URL}/api/users/register`, { username, email, password });
         setSuccess('Registration successful!');
         setIsLogin(true);
       }

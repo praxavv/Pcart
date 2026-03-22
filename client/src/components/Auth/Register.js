@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../../config';
 
 const Register = ({ onRegister }) => {
   const [username, setUsername] = useState('');
@@ -15,7 +16,7 @@ const Register = ({ onRegister }) => {
     setError('');
     setSuccess('');
     try {
-      await axios.post('/api/users/register', { username, email, password });
+      await axios.post(`${API_BASE_URL}/api/users/register`, { username, email, password });
       setSuccess('Registration successful! You can now log in.');
       onRegister && onRegister();
     } catch (err) {
