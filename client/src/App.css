@@ -105,19 +105,45 @@
 .header-bottom {
   display: flex;
   gap: 1.5rem;
-  padding: 0.4rem 2rem;
-  background-color: #232f3e; /* Standard Amazon dark grey-blue */
-  font-size: 0.7rem;
+  padding: 0.3rem 2rem;
+  font-size: 0.9rem;
+
+  /* Neon translucent background */
+  background: rgba(0, 255, 150, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  /* Subtle neon border */
+  border-bottom: 1px solid rgba(0, 255, 150, 0.25);
+
+  /* Glow effect */
+  box-shadow:
+    0 0 10px rgb(0, 255, 26),
+    inset 0 0 8px rgba(0, 255, 150, 0.15);
 }
 
 .header-bottom a {
   text-decoration: none;
   color: #eee;
   font-weight: 500;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .header-bottom a:hover {
   color: var(--primary-color);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Laptop/Desktop enhancement */
+@media (min-width: 1024px) {
+  .header-bottom {
+    justify-content: space-evenly;
+    padding: 0.2rem 10%;
+    font-size: 1rem;
+  }
 }
 
 .content-area {
@@ -169,5 +195,25 @@
   .content-area {
     margin-top: 130px; /* Adjust for taller header when search bar wraps */
   }
+
+  .header-bottom {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.3rem 2rem;
+  font-size: 0.7rem;
+
+  /* Neon translucent background */
+  background: rgba(0, 255, 150, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  /* Subtle neon border */
+  border-bottom: 1px solid rgba(0, 255, 150, 0.25);
+
+  /* Glow effect */
+  box-shadow:
+    0 0 10px rgb(0, 255, 26),
+    inset 0 0 8px rgba(0, 255, 150, 0.15);
+}
 }
 

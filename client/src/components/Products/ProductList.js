@@ -9,7 +9,7 @@ const fallbackProducts = [
   {
     _id: 1,
     name: "iPhone 15 Pro",
-    imageUrl: "https://images.unsplash.com/photo-1696446701796-da61225697cc?auto=format&fit=crop&q=80&w=800",
+    imageUrl: "https://unsplash.com/photos/ikgP7AQs2r4/download?force=true",
     description: "The latest iPhone with Titanium design and A17 Pro chip.",
     price: 55000,
     stock: 15,
@@ -17,7 +17,7 @@ const fallbackProducts = [
   {
     _id: 2,
     name: "Gaming Mouse RGB",
-    imageUrl: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&q=80&w=800",
+    imageUrl: "https://unsplash.com/photos/2mBKkeklHbI/download?force=true",
     description: "High-precision optical sensor with customizable RGB lighting.",
     price: 1500,
     stock: 25,
@@ -25,7 +25,7 @@ const fallbackProducts = [
   {
     _id: 3,
     name: "Classic Rubik's Cube",
-    imageUrl: rubikImg,
+    imageUrl: "https://unsplash.com/photos/VYVp_vONi40/download?force=true",
     description: "The original 3x3 Rubik's Cube. A challenge for all ages.",
     price: 499,
     stock: 50,
