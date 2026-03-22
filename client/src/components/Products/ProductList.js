@@ -34,8 +34,20 @@ const fallbackProducts = [
   }
 ];
 
+const localImageMap = {
+    "iPhone 15 Pro": iphoneImg,
+    "Gaming Mouse RGB": mouseImg,
+    "Classic Rubik's Cube": rubikImg,
+};
+
 // Helper to resolve image path
-const getImageUrl = (url) => {
+const getImageUrl = (product) => {
+    // 1. Try to use local image based on product name
+    if (localImageMap[product.name]) {
+        return localImageMap[product.name];
+    }
+
+    const url = product.imageUrl;
     if (!url) return rubikImg;
     
     // Handle imported modules (objects with a 'default' property or direct strings)
@@ -113,13 +125,11 @@ const ProductList = () => {
                 {products.map(product => (
                     <div key={product._id} className="product-card">
                         <div className="product-image-wrapper">
-                            {product.imageUrl && (
-                                <img
-                                    src={getImageUrl(product.imageUrl)}
-                                    alt={product.name}
-                                    className="product-image"
-                                />
-                            )}
+                            <img
+                                src={getImageUrl(product)}
+                                alt={product.name}
+                                className="product-image"
+                            />
                         </div>
                         <div className="product-info">
                             <h3 className="product-title">{product.name}</h3>
