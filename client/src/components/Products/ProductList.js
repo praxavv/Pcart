@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useCart } from '../../context/CartContext';
 import { API_BASE_URL } from '../../config';
+import iphoneImg from '../../assets/iphone.jpg';
+import mouseImg from '../../assets/mouse.jpg';
 import rubikImg from '../../assets/rubik.jpg';
 import './ProductCard.css'; // Assuming you have a CSS file for styling
 
@@ -9,7 +11,7 @@ const fallbackProducts = [
   {
     _id: 1,
     name: "iPhone 15 Pro",
-    imageUrl: "https://images.unsplash.com/photo-ikgP7AQs2r4?w=800&q=80&auto=format",
+    imageUrl: iphoneImg,
     description: "The latest iPhone with Titanium design and A17 Pro chip.",
     price: 55000,
     stock: 15,
@@ -17,7 +19,7 @@ const fallbackProducts = [
   {
     _id: 2,
     name: "Gaming Mouse RGB",
-    imageUrl: "https://images.unsplash.com/photo-2mBKkeklHbI?w=800",
+    imageUrl: mouseImg,
     description: "High-precision optical sensor with customizable RGB lighting.",
     price: 1500,
     stock: 25,
@@ -25,7 +27,7 @@ const fallbackProducts = [
   {
     _id: 3,
     name: "Classic Rubik's Cube",
-    imageUrl: "https://images.unsplash.com/photo-VYVp_vONi40",
+    imageUrl: rubikImg,
     description: "The original 3x3 Rubik's Cube. A challenge for all ages.",
     price: 499,
     stock: 50,
