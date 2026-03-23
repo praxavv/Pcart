@@ -68,7 +68,20 @@ const getImageUrl = (product) => {
 const ProductList = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [addedItems, setAddedItems] = useState({});
     const { dispatch } = useCart();
+
+    const handleAddToCart = (product) => {
+        dispatch({ type: 'ADD_TO_CART', product });
+        
+        // Trigger glass effect on button
+        setAddedItems(prev => ({ ...prev, [product._id]: true }));
+        
+        // Reset after 2 seconds
+        setTimeout(() => {
+            setAddedItems(prev => ({ ...prev, [product._id]: false }));
+        }, 2000);
+    };
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -143,12 +156,11 @@ const ProductList = () => {
                                 {product.stock > 0 ? "In Stock" : <span className="out-of-stock">Out of Stock</span>}
                             </p>
                             <button
-                                className="add-to-cart-button"
-                                onClick={() =>
-                                    dispatch({ type: 'ADD_TO_CART', product })
-                                }
+                                className={`add-to-cart-button ${addedItems[product._id] ? 'added-glass' : ''}`}
+                                onClick={() => handleAddToCart(product)}
+                                disabled={addedItems[product._id]}
                             >
-                                Add to Cart
+                                {addedItems[product._id] ? "Added!" : "Add to Cart"}
                             </button>
                         </div>
                     </div>

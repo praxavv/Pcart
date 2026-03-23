@@ -205,18 +205,44 @@
 .add-to-cart-button {
   background-color: var(--primary-color);
   color: #000;
-  border: none;
+  border: 1px solid transparent;
   padding: 0.8rem 2rem;
   border-radius: 25px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s;
-  width: fit-content;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  width: 160px; /* Fixed width to prevent jumping */
+  position: relative;
+  overflow: hidden;
 }
 
-.add-to-cart-button:hover {
+.add-to-cart-button:active {
+  transform: scale(0.92);
+}
+
+.add-to-cart-button:hover:not(.added-glass) {
   background-color: #32e612;
   box-shadow: 0 0 15px var(--primary-color);
+  transform: scale(1.05);
+}
+
+.add-to-cart-button.added-glass {
+  background: rgba(57, 255, 20, 0.1) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-color: rgba(57, 255, 20, 0.6);
+  color: var(--primary-color);
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.3), inset 0 0 10px rgba(57, 255, 20, 0.1);
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.8);
+  transform: scale(1.1) translateY(-5px);
+  pointer-events: none;
+  animation: buttonPop 0.4s ease-out;
+}
+
+@keyframes buttonPop {
+  0% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.2) translateY(-10px); }
+  100% { transform: scale(1.1) translateY(-5px); }
 }
 
 /* Responsiveness */

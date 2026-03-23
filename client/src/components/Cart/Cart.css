@@ -1,312 +1,314 @@
-.cart-container {
-  background: rgba(20, 20, 20, 0.98); /* Semi-transparent dark background */
-  border: 2px solid #39ff14; /* Bright green neon border */
-  border-radius: 20px; /* Rounded corners */
-  box-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14; /* Double green glow effect */
-  padding: 2rem; /* Inner spacing */
-  margin: 4rem auto 2rem auto; /* Center horizontally with top/bottom margins */
-  width: 90vw; /* 90% of viewport width */
-  max-width: 600px; /* Maximum width constraint */
-  transform: scale(1.02); /* Slightly scale up the container */
+:root {
+  --bg-color: #0f0f0f;
+  --card-bg: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --accent-color: #39ff14; /* Keeping a hint of the original green but refined */
+  --error-color: #ff3b3b;
+  --border-color: #333333;
+  --transition: all 0.3s ease;
 }
 
-/* Cart Table */
-.cart-table {
-  width: 100%; /* Full width of container */
-  border-collapse: collapse; /* Remove gaps between table cells */
-  margin-bottom: 1.5rem; /* Space below the table */
+.cart-page {
+  max-width: 1000px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, sans-serif;
 }
 
-.cart-table th,
-.cart-table td {
-  border-bottom: 1px solid #39ff14; /* Green bottom border for each cell */
-  padding: 0.7rem; /* Cell padding */
-  text-align: center; /* Center-align text */
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
 }
 
-.cart-table th {
-  color: #39ff14; /* Green text color for headers */
-  text-shadow: 0 0 8px #39ff14; /* Glowing text effect */
+.cart-header h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0;
 }
 
-.cart-table td {
-  color: #39ff14; /* Green text color for data cells */
+.cart-count {
+  color: var(--text-secondary);
+  font-size: 1rem;
 }
 
-/* Quantity Input */
-.cart-table input[type="number"] {
-  background: #0a0a0a; /* Very dark background */
-  color: #39ff14; /* Green text */
-  border: 1px solid #39ff14; /* Green border */
-  border-radius: 6px; /* Rounded corners */
-  padding: 0.3rem 0.4rem; /* Inner padding */
-  font-size: 1rem; /* Font size */
-  outline: none; /* Remove focus outline */
-  transition: box-shadow 0.2s, border 0.2s; /* Smooth transitions */
+.cart-content {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
 }
 
-/* Remove browser spinner arrows from number inputs */
-.cart-table input[type="number"]::-webkit-inner-spin-button,
-.cart-table input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none; /* Hide webkit spinner */
-  margin: 0; /* Remove margins */
-  display: none; /* Hide completely */
+/* Cart Items List */
+.cart-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.cart-table input[type="number"] {
-  -moz-appearance: textfield; /* Hide Firefox spinner */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background: var(--card-bg);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
 }
 
-/* Remove Cart Button */
-.remove-cart-item {
-  background: none; /* Transparent background */
-  color: #ff39a6; /* Pink text color */
-  border: 1px solid #ff39a6; /* Pink border */
-  border-radius: 6px; /* Rounded corners */
-  padding: 0.3rem 0.8rem; /* Button padding */
-  cursor: pointer; /* Pointer cursor on hover */
-  box-shadow: 0 0 8px #ff39a6; /* Pink glow effect */
-  transition: background 0.2s, color 0.2s; /* Smooth color transitions */
+.cart-item:hover {
+  border-color: var(--accent-color);
+  box-shadow: 0 4px 20px rgba(57, 255, 20, 0.05);
 }
 
-.remove-cart-item:hover {
-  background: #ff39a6; /* Pink background on hover */
-  color: #0a0a0a; /* Dark text on hover */
+.item-details {
+  flex: 1;
 }
 
-/* Total */
-.cart-total {
-  font-size: 1.3rem; /* Larger font size */
-  color: #39ff14; /* Green text */
-  text-shadow: 0 0 8px #39ff14; /* Glowing effect */
-  margin-bottom: 1rem; /* Space below total */
+.item-name {
+  margin: 0 0 0.4rem 0;
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
-/* Checkout Button */
-.checkout-button {
-  background: #0a0a0a; /* Dark background */
-  color: #39ff14; /* Green text */
-  border: 2px solid #39ff14; /* Green border */
-  border-radius: 8px; /* Rounded corners */
-  padding: 0.7rem 2rem; /* Button padding */
-  font-size: 1.1rem; /* Slightly larger font */
-  font-weight: bold; /* Bold text */
-  cursor: pointer; /* Pointer cursor */
-  box-shadow: 0 0 12px #39ff14; /* Green glow effect */
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s; /* Smooth transitions */
+.item-price {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
 }
 
-.checkout-button:hover {
-  background: #39ff14; /* Green background on hover */
-  color: #0a0a0a; /* Dark text on hover */
-  box-shadow: 0 0 32px #39ff14, 0 0 8px #fff; /* Enhanced glow on hover */
+.item-actions {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
-/* Checkout Status */
-.checkout-status {
-  margin-top: 1rem; /* Space above status message */
-  color: #39ff14; /* Green text */
-  text-shadow: 0 0 8px #39ff14; /* Glowing effect */
+.quantity-control {
+  display: flex;
+  align-items: center;
+  background: #252525;
+  border-radius: 8px;
+  padding: 0.2rem;
 }
 
-/* Empty Cart Message */
-.cart-empty {
-  color: #fff; /* White text */
-  text-align: center; /* Center-aligned */
-  margin-top: 3rem; /* Top margin */
-  font-size: 1.5rem; /* Large font size */
-  text-shadow: 0 0 8px #39ff14; /* Green glow effect */
+.qty-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  border-radius: 6px;
+  transition: var(--transition);
 }
 
-/* Quantity Arrows Layout */
-.custom-quantity,
-.custom-quantity-vertical {
-  display: flex; /* Flexbox layout */
-  align-items: center; /* Vertically center items */
-  gap: 0.3rem; /* Space between elements */
+.qty-btn:hover {
+  background: #333;
 }
 
-/* Quantity Input in Arrows */
-.custom-quantity input[type="number"],
-.custom-quantity-vertical input[type="number"] {
-  width: 2.5rem; /* Fixed width */
-  padding: 0.2rem 0.4rem; /* Padding */
-  font-size: 1rem; /* Font size */
-  background: #0a0a0a; /* Dark background */
-  color: #39ff14; /* Green text */
-  outline: none; /* Remove focus outline */
-  text-align: center; /* Center-align text */
-  transition: box-shadow 0.2s, border 0.2s; /* Smooth transitions */
+.qty-value {
+  width: 30px;
+  text-align: center;
+  font-weight: 500;
 }
 
-.custom-quantity-vertical input[type="number"] {
-  width: 2.2rem; /* Slightly smaller width for vertical layout */
-  padding: 0.1rem 0.2rem; /* Less padding for compact design */
+.item-subtotal {
+  font-weight: 600;
+  min-width: 80px;
+  text-align: right;
 }
 
-/* Vertical Arrow Buttons */
-.vertical-arrows {
-  display: flex; /* Flexbox layout */
-  flex-direction: column; /* Stack vertically */
-  gap: 0.2rem; /* Small gap between arrows */
+.remove-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  border-radius: 8px;
 }
 
-.neon-arrow,
-.neon-arrow-vertical {
-  background: transparent; /* Transparent background */
-  color: #39ff14; /* Green text/icon */
-  border: 1px solid #39ff14; /* Green border */
-  border-radius: 4px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor */
-  transition: box-shadow 0.2s; /* Smooth glow transition */
-  line-height: 1; /* Tight line height */
-  padding: 0; /* No padding */
+.remove-btn:hover {
+  color: var(--error-color);
+  background: rgba(255, 59, 59, 0.1);
 }
 
-.neon-arrow {
-  font-size: 1.2rem; /* Font size for horizontal arrows */
-  width: 2rem; /* Width */
-  height: 2rem; /* Height */
+/* Cart Summary */
+.cart-summary {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  position: sticky;
+  top: 2rem;
 }
 
-.neon-arrow-vertical {
-  font-size: 0.9rem; /* Smaller font for vertical arrows */
-  width: 1.1rem; /* Compact width */
-  height: 1rem; /* Compact height */
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
 }
 
-.neon-arrow:hover,
-.neon-arrow-vertical:hover {
-  box-shadow: 0 0 16px #39ff14, 0 0 8px #fff; /* Enhanced glow on hover */
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
-/* Mobile Responsive Design */
-/*Responsive Design */
-@media (max-width: 767px) {
-  .cart-container {
-    width: 90%;
-    height:70%;/* height: 130vw; REMOVE or use min-height, as fixed height with vw can cause issues */ /* Example: Ensures some minimum visible area */
+.checkout-btn {
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1rem;
+  background: var(--accent-color);
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.checkout-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(57, 255, 20, 0.3);
+}
+
+.checkout-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.checkout-message {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.checkout-message.success {
+  background: rgba(57, 255, 20, 0.1);
+  color: var(--accent-color);
+}
+
+.checkout-message.error {
+  background: rgba(255, 59, 59, 0.1);
+  color: var(--error-color);
+}
+
+/* Empty State */
+.cart-empty-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+}
+
+.cart-empty-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.cart-empty-text {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.continue-shopping {
+  padding: 0.8rem 2rem;
+  background: transparent;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.continue-shopping:hover {
+  background: var(--accent-color);
+  color: #000;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .cart-page {
+    margin: 3.5rem auto;
+  }
+
+  .cart-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .cart-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .cart-item {
     padding: 1rem;
-    margin-top: 7rem;
-    background: transparent;
-    text-align:center;
-    display:flex;
     flex-direction: column;
-    box-shadow: 0 0 13px #39ff14;
-    /* REMOVE overflow-x: auto; from here */
+    align-items: flex-start;
+    gap: 1.2rem;
   }
 
-  .cart-table {
-    width: 100%; /* Keep table full width of its container */
-    font-size: 0.70rem; /* Smaller text for mobile */
-    table-layout: fixed; /* Use fixed layout to control column widths precisely */
-    /* REMOVE display: flex; flex-direction: column; etc. - it breaks table layout */
-    /* REMOVE overflow-x: auto; from here */
-    /* REMOVE min-width from here if you use table-layout: fixed and define column widths */
+  .item-actions {
+    width: 100%;
+    justify-content: space-between;
+    gap: 1rem;
   }
 
-  .cart-table th,
-  .cart-table td {
-    padding: 0.4rem 0.2rem; /* Reduce cell padding */
-    text-align: center; /* Center align all cells initially for consistency */
-    vertical-align: middle; /* Center content vertically in cells */
-    /* REMOVE white-space: nowrap; - We want wrapping to avoid scrollbar */
-    word-wrap: break-word; /* Allow long words to break */
-    overflow-wrap: break-word; /* Better text wrapping */
+  .item-subtotal {
+    margin-left: auto;
+    margin-right: 1rem;
   }
 
-  /* Define specific column widths using percentages for table-layout: fixed */
-  .cart-table th:nth-child(1), /* Product Name Column */
-  .cart-table td:nth-child(1) {
-    width: 35%; /* Adjust percentage as needed to fit */
-    text-align: left; /* Product name usually left-aligned */
+  .cart-summary {
+    position: static;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .item-actions {
+    flex-wrap: wrap;
+  }
+  
+  .item-subtotal {
+    width: 100%;
+    text-align: left;
+    margin: 0.5rem 0;
+    order: 3;
   }
 
-  .cart-table th:nth-child(2), /* Price Column */
-  .cart-table td:nth-child(2) {
-    width: 20%; /* Adjust percentage */
+  .remove-btn {
+    order: 2;
   }
 
-  .cart-table th:nth-child(3), /* Quantity Column */
-  .cart-table td:nth-child(3) {
-    width: 25%; /* Adjust percentage */
-  }
-
-  .cart-table th:nth-child(4){ /* Subtotal Column */ 
-    width: 20%;
-    color: #39ff14;
-    } /* Adjust percentage */
-    /* If subtotal is still too wide, consider hiding it or making it display block below quantity */
-    /* display: none; */ /* Uncomment to hide subtotal column on mobile */
-
-   .cart-table td:nth-child(4){
-   
-   text-shadow: 0 0 10px, 0 0 20px #ffffff;
-   color: #ffffff;
-   font-weight: bold;
-   }
-
-  .cart-table th:nth-child(5), /* Remove Column */
-  .cart-table td:nth-child(5) {
-    /* You might remove this column or make the button smaller */
-    display: none; /* Example: Hide "Remove" column on mobile to save space */
-  }
-
-  /* Adjust input and button sizes for mobile */
-  .cart-table input[type="number"] {
-    width: 100%; /* Full width in mobile cells */
-    max-width: 50px; /* But not too wide, experiment with this */
-    font-size: 0.8rem; /* Smaller font */
-    padding: 0.1rem 0.2rem; /* Reduce padding even more */
-  }
-
-  .custom-quantity input[type="number"],
-  .custom-quantity-vertical input[type="number"] {
-    width: 1.8rem; /* Smaller width for mobile */
-    font-size: 0.9rem; /* Smaller font */
-    margin-left: 0.9rem;
-    border-radius: 1px;
-  }
-
-  .neon-arrow {
-    width: 1.2rem; /* Smaller arrows */
-    height: 1.2rem;
-    font-size: 0.9rem;
-    margin-left:0;
-    border-sizing: none;
-    border-radius: 1px;   
-  }
-
-  .neon-arrow-vertical {
-    width: 0.9rem; /* Smaller vertical arrows */
-    height: 1rem;
-    font-size: 0.9rem;
-    border: solid;
-    border-radius: 1px;
-    margin-left: 0;
-  }
-
-  .checkout-button {
-    width: 80%; /* Full width checkout button */
-    padding: 0.8rem 1rem; /* Adjust padding */
-    font-size: 1rem; /* Slightly smaller font */
-    margin-top:2px;
-    margin-bottom: 1rem;
-  }
-
-  .cart-total {
-    font-size: 1.1rem; /* Smaller total text */
-    text-align: center; /* Center align */
-    margin-top: 1rem;
-  }
-
-  .cart-empty {
-    font-size: 1.2rem; /* Smaller empty message */
-    margin-top: 2rem; /* Less top margin */
-  }
-
-  .App{
-  	box-shadow: none;
-  	border:none;
+  .quantity-control {
+    order: 1;
   }
 }
