@@ -126,8 +126,11 @@ const ProductList = () => {
                     ))}
                 </div>
                 <div className="hero-content">
-                    <h1> Pranav's Cart <br /> The future of shopping </h1>
-                    <p>Experience the ultimate storefront <br /> Fast and Secure</p>
+                    <h1> 
+                        Pranav's Cart 
+                        <span className="hero-subtitle">The future of shopping</span>
+                    </h1>
+                    <p>Experience the next generation of e-commerce with our handpicked premium collection.</p>
                     <button className="hero-cta" onClick={() => window.scrollTo({ top: window.innerHeight - 80, behavior: 'smooth' })}>
                         Explore Collection
                     </button>

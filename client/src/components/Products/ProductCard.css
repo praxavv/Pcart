@@ -9,12 +9,12 @@
 .hero-banner {
   width: 100%;
   height: calc(100vh - 80px); /* Full height minus header */
-  background: transparent;
+  background: radial-gradient(circle at center, rgba(57, 255, 20, 0.05) 0%, transparent 70%);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  border-bottom: 1px solid var(--primary-color);
+  border-bottom: 1px solid rgba(57, 255, 20, 0.1);
   position: relative;
   overflow: hidden;
   margin-bottom: 4rem;
@@ -23,11 +23,12 @@
 .hero-banner::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: transparent;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(13, 13, 13, 0.8) 100%);
+  z-index: 1;
 }
 
 /* Star effect container */
@@ -38,39 +39,87 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 20px;
 }
 
 .hero-content h1 {
-  font-size: 4rem;
-  margin-bottom: 1rem;
-  text-shadow: var(--neon-shadow);
-  z-index: 1;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -1px;
+  background: linear-gradient(to bottom, #fff 30%, var(--primary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 15px rgba(57, 255, 20, 0.4));
+  text-transform: none; /* Override uppercase if needed */
+}
+
+.hero-content .hero-subtitle {
+  display: block;
+  font-size: 0.4em;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  letter-spacing: 8px;
+  margin-top: 1rem;
+  font-weight: 400;
+  opacity: 0.9;
+  text-shadow: 0 0 10px var(--primary-color);
 }
 
 .hero-content p {
-  font-size:1rem;
-  color: #ccc;
-  margin-bottom: 2.5rem;
-  z-index: 1;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: #888;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
 }
 
 .hero-cta {
-  background: var(--primary-color);
-  color: #000;
-  border: none;
-  padding: 1rem 2.5rem;
-  font-weight: bold;
-  font-size: 1.1rem;
+  background: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  padding: 1.2rem 3rem;
+  font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.3s;
-  z-index: 1;
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
   position: relative;
+  overflow: hidden;
+}
+
+.hero-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(57, 255, 20, 0.2), transparent);
+  transition: 0.5s;
 }
 
 .hero-cta:hover {
-  transform: scale(1.1);
-  box-shadow: var(--neon-shadow);
+  background: var(--primary-color);
+  color: #000;
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(57, 255, 20, 0.5);
+}
+
+.hero-cta:hover::before {
+  left: 100%;
 }
 
 /* Product Grid */
