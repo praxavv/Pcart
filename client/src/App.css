@@ -217,3 +217,17 @@
 }
 }
 
+
+
+body::-webkit-scrollbar {
+    width: 6px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #000;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #00f2ff;
+    border-radius: 10px;
+}

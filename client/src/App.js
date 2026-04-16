@@ -1,7 +1,7 @@
 // In App.js
 
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import ProductList from './components/Products/ProductList';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
@@ -9,28 +9,30 @@ import Cart from './components/Cart/Cart';
 import Login from './components/Auth/Login';
 
 function App() {
- const numberOfStars = 200; // Adjust the number of stars
- const stars = [...Array(numberOfStars)].map((_, i) => {
- const x = Math.random() * 100 + 'vw';
- const y = Math.random() * 100 + 'vh';
- const size = Math.random() * 6 + 'px';
- const animationDelay = Math.random() * 2 + 's';
+ const numberOfStars = 80;
 
+const stars = useMemo(() => {
+  return [...Array(numberOfStars)].map((_, i) => {
+    const x = Math.random() * 100 + 'vw';
+    const y = Math.random() * 100 + 'vh';
+    const size = Math.random() * 6 + 'px';
+    const animationDelay = Math.random() * 2 + 's';
 
- return (
- <div
- key={i}
- className="star"
- style={{
- top: y,
- left: x,
- width: size,
- height: size,
- animationDelay: animationDelay,
- }}
- ></div>
- );
- });
+    return (
+      <div
+        key={i}
+        className="star"
+        style={{
+          top: y,
+          left: x,
+          width: size,
+          height: size,
+          animationDelay: animationDelay,
+        }}
+      ></div>
+    );
+  });
+}, []);
  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
  useEffect(() => {

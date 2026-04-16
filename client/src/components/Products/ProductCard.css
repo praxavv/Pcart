@@ -54,23 +54,29 @@
   line-height: 1.1;
   font-weight: 800;
   letter-spacing: -1px;
+
   background: linear-gradient(to bottom, #fff 30%, var(--primary-color));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 15px rgba(57, 255, 20, 0.4));
-  text-transform: none; /* Override uppercase if needed */
+
+  /* REMOVE this */
+  /* filter: drop-shadow(...) */
+
+  /* ADD THIS */
+  text-shadow: 
+    0 0 8px rgba(57, 255, 20, 0.4),
+    0 0 16px rgba(57, 255, 20, 0.2);
 }
 
 .hero-content .hero-subtitle {
   display: block;
-  font-size: 0.4em;
+  font-size: 0.5em;
   color: var(--primary-color);
   text-transform: uppercase;
-  letter-spacing: 8px;
+  letter-spacing: 4px;
   margin-top: 1rem;
-  font-weight: 400;
-  opacity: 0.9;
-  text-shadow: 0 0 10px var(--primary-color);
+  font-weight: 500;
+  opacity: 1;
 }
 
 .hero-content p {
